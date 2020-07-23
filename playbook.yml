@@ -5,42 +5,27 @@
   vars:
         - applications:
             - htop
-            - awscli
-            - gradle
-            - maven
             - tmux
-            - postgresql
-            - redis
-            - cocoapods
-            - jq 
-            - watchman
+            - direnv
             - rbenv
             - nvm
-            - docker
-            - ansible
+            - jq 
+            - watchman
             - hugo
             - docker-compose
-            - rust
-            - erlang
-            - elixir
+            - rustup
             - git
             - rsync
             - curl
             - wget
             - tree
             - httpie
-            - kubectl
-            - kubernetes-helm
             - zsh
             - go
             - python
-            - ruby
-            - nodejs
-            - yarn
             - vim
             - terraform
         - cask_applications:
-            - java
             - docker
             - iterm2
             - google-chrome
@@ -48,28 +33,17 @@
             - visual-studio-code
             - slack
             - vlc
-            - fastlane
             - spotify
             - rstudio
-            - aws-vault
-            - google-cloud-sdk
+            - notion
             - skype
-            - react-native-debugger
-            - gimp
             - ngrok
-            - mactex
-            - microsoft-office
-            - android-studio
-            - discord
-            - github
             - jetbrains-toolbox
             - calibre
             - anki
             - transmission
-            - microsoft-teams
             - whatsapp
-            - pgadmin4
-            - onedrive
+       
   tasks:
       - name: install homebrew
         shell: 'yes | /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"' 
@@ -80,10 +54,6 @@
         homebrew:
             state: latest
             update_homebrew: yes
-
-      - name: tap homebrew caskroom/cask
-        homebrew_tap:
-            tap: "caskroom/cask"
 
       - name: start installing homebrew applications
         homebrew:
