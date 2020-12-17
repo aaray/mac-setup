@@ -3,64 +3,75 @@
   hosts: local
   connection: local
   vars:
-        - applications:
-            - htop
-            - tmux
-            - direnv
-            - rbenv
-            - nvm
-            - jq 
-            - watchman
-            - hugo
-            - docker-compose
-            - rustup
-            - git
-            - rsync
-            - curl
-            - wget
-            - tree
-            - httpie
-            - zsh
-            - go
-            - python
-            - vim
-            - terraform
-        - cask_applications:
-            - docker
-            - iterm2
-            - google-chrome
-            - firefox
-            - visual-studio-code
-            - slack
-            - vlc
-            - spotify
-            - rstudio
-            - notion
-            - skype
-            - ngrok
-            - jetbrains-toolbox
-            - calibre
-            - anki
-            - transmission
-            - whatsapp
-       
+    applications:
+      - awscli
+      - curl
+      - direnv
+      - docker
+      - docker-compose
+      - fdupes
+      - gh
+      - git
+      - git-flow
+      - go
+      - htop
+      - httpie
+      - hugo
+      - jq
+      - minikube
+      - neovim
+      - nvm
+      - rbenv
+      - rclone
+      - rsync
+      - rustup
+      - terraform
+      - tmux
+      - tree
+      - vim
+      - watchman
+      - wget
+      - yarn
+      - zsh
+    cask_applications:
+      - anki
+      - aws-vault
+      - balenaetcher
+      - calibre
+      - docker
+      - firefox
+      - google-chrome
+      - iterm2
+      - jetbrains-toolbox
+      - ngrok
+      - notion
+      - rstudio
+      - skype
+      - slack
+      - spotify
+      - surfshark
+      - transmission
+      - visual-studio-code
+      - vlc
+      - whatsapp
+
   tasks:
-      - name: install homebrew
-        shell: 'yes | /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"' 
-        args:
-            creates: /usr/local/bin/brew
+    - name: install homebrew
+      shell: 'yes | /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"'
+      args:
+        creates: /usr/local/bin/brew
 
-      - name: ensure homebrew is updated 
-        homebrew:
-            state: latest
-            update_homebrew: yes
+    - name: ensure homebrew is updated
+      homebrew:
+        state: latest
+        update_homebrew: yes
 
-      - name: start installing homebrew applications
-        homebrew:
-            name: "{{applications}}"
-            state: latest
- 
-      - name: start installing homebrew cask applications
-        homebrew_cask:
-            name: "{{cask_applications}}"
-            state: installed 
+    - name: start installing homebrew applications
+      homebrew:
+        name: "{{applications}}"
+        state: latest
+
+    - name: start installing homebrew cask applications
+      homebrew_cask:
+        name: "{{cask_applications}}"
+        state: upgraded
